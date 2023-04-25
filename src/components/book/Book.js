@@ -1,10 +1,19 @@
 import { Button } from '@mui/material';
+import axios from 'axios';
 import React from 'react'
+import { Link , useNavigate} from 'react-router-dom';
 import "./book.css"
 const Book = (props) => {
 
-  const { bName, author, description, price, image } = props.book;
+  const navigate = useNavigate();
+  const { _id, bName, author, description, price, image } = props.book;
 
+  const deleteHandler = async() => {
+    await axios.delete(`http://localhost:5000/books/${_id}`)
+    .then((res) => res.data)
+    .then(() => navigate('/'))
+    .then(() => navigate('/books'));
+  }
 
   return (
     <>
@@ -17,8 +26,8 @@ const Book = (props) => {
         <h3>{bName}</h3>
         <p>{description}</p>
         <h2>Rs {price}</h2>
-        <Button>Update</Button>
-        <Button>Delete</Button>
+        <Button LinkComponent={Link} to={`/books/${_id}`} >Update</Button>
+        <Button onClick={deleteHandler}>Delete</Button>
 
       </div>
 

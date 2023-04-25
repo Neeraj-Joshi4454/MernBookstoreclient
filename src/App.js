@@ -6,6 +6,7 @@ import About from './components/About';
 import PageNotFound from './components/PageNotFound';
 import Books from './components/book/Books'
 import Header from './components/Header';
+import BookDetail from './components/book/BookDetail';
 function App() {
   return (
    <>
@@ -19,6 +20,7 @@ function App() {
           <Route path='/add' element={<AddBook/>}/>
           <Route path='/books' element={<Books/>}/>
           <Route path='/about' element={<About/>}/>
+          <Route path='/books/:id' element={<BookDetail/>}/>
           <Route path='*' element={<PageNotFound/>}/>
 
 
